@@ -1,0 +1,27 @@
+<div class="article-card">
+  <div class="card-image">
+    <img [src]="article.thumbnail || 'assets/default-article.jpeg'" [alt]="article.title">
+  </div>
+  
+  <div class="card-content">
+    <div class="article-meta">
+      <span class="publish-date">{{ article.publishDate | date }}</span>
+      <span class="views">{{ article.views }} views</span>
+    </div>
+    
+    <h3>
+      <a [routerLink]="['/articles', article.id]">{{ article.title }}</a>
+    </h3>
+    
+    <p class="description">{{ article.description }}</p>
+    
+    <div class="tags">
+      <span *ngFor="let tag of article.tags" class="tag">{{ tag }}</span>
+    </div>
+    
+    <div *ngIf="showAuthor" class="author-info">
+    
+      <span class="author-name">{{ (author || article.author)?.name }}</span>
+    </div>
+  </div>
+</div>

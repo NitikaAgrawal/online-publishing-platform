@@ -1,0 +1,10 @@
+<div class="featured-articles" *ngIf="featuredArticles.length > 0">
+    <h3>Featured Articles</h3>
+    <div class="featured-grid">
+      <app-article-card 
+        *ngFor="let article of featuredArticles"
+        [article]="article"
+        [showAuthor]="true">
+      </app-article-card>
+    </div>
+  </div>

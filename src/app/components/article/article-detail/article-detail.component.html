@@ -1,0 +1,46 @@
+<div class="article-detail" *ngIf="article" style="background-color:azure; font-weight: bold;">
+    <div class="article-header">
+      <h1>{{ article.title }}</h1>
+      <div class="article-meta">
+        <div class="author-info">
+          <img [src]="author?.profilePicture || 'assets/default-profile.jpeg'" 
+               [alt]="author?.name" 
+               class="author-image">
+          <div>
+            <span class="author-name">{{ author?.name }}</span>
+            <span class="publish-date">{{ article.publishDate | date }}</span>
+          </div>
+        </div>
+        <div class="article-stats">
+          <span style="background-color: red;color: white;">{{ article.views }} views</span>
+          <span style="background-color: rgb(27, 211, 244);color: white;">{{ article.likes }} likes</span>
+        </div>
+      </div>
+    </div>
+    <div class="article-content">
+      <div class="thumbnail" *ngIf="article.thumbnail">
+        <img [src]="article.thumbnail" [alt]="article.title">
+      </div>
+      <div class="content" [innerHTML]="article.content" style="background-color: rgb(156, 241, 241);"></div>
+    </div>
+  
+    <div class="article-footer">
+      <div class="tags" style="background-color: rgb(247, 236, 22);height: 30px;">
+        <span *ngFor="let tag of article.tags" class="tag" style="background-color:rgb(6, 102, 105);color: white;">{{ tag }}</span>
+      </div>
+    </div>
+  
+    <app-comment-section [articleId]="article.id"></app-comment-section>
+  
+    <div class="related-articles" *ngIf="relatedArticles.length > 0">
+      <h3>Recommended for you</h3>
+      <div class="articles-grid">
+        <div *ngFor="let article of relatedArticles" class="related-article">
+          <a [routerLink]="['/articles', article.id]">
+            <img [src]="article.thumbnail|| 'assets/default-article.jpeg'" [alt]="article.title">
+            <h4>{{ article.title }}</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

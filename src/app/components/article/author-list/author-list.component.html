@@ -1,0 +1,27 @@
+<div class="author-list-container">
+    <h2>Our Authors</h2>
+    
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery" 
+        placeholder="Search authors by name...">
+    </div>
+  
+    <div class="authors-grid">
+      <div *ngFor="let author of authors" class="author-card">
+        <a [routerLink]="['/authors', author.id]">
+          <img [src]="author.profilePicture || 'assets/default-profile.jpeg'" 
+               [alt]="author.name" 
+               class="author-image">
+          <div class="author-info">
+            <h3>{{ author.name }}</h3>
+            <p class="bio">{{ author.bio | truncate:100 }}</p>
+            <div class="stats">
+              <span>{{ articleService.getArticlesByAuthor(author.id).length }} articles</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>

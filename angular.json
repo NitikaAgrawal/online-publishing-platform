@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rent-hub": {
+    "online-publishing": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/rent-hub",
+            "outputPath": "dist/online-publishing",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -25,14 +25,18 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+           "assets": [
+                   "src/favicon.ico",
+                   {
+                     "glob": "**/*",
+                     "input": "src/assets/",
+                      "output": "/assets/"
+                   }
+                     ],
             "styles": [
-              "src/styles.scss"
+                      "node_modules/quill/dist/quill.core.css",
+                      "node_modules/quill/dist/quill.snow.css",
+                      "src/styles.scss"
             ],
             "scripts": []
           },
@@ -64,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "rent-hub:build:production"
+              "buildTarget": "online-publishing:build:production"
             },
             "development": {
-              "buildTarget": "rent-hub:build:development"
+              "buildTarget": "online-publishing:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,12 +95,17 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+                   "node_modules/quill/dist/quill.core.css",
+                    "node_modules/quill/dist/quill.snow.css",
+                    "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "81901e0b-c463-4616-bf55-20bf9341acb7"
   }
 }

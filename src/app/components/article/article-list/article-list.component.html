@@ -1,0 +1,52 @@
+<div class="article-list-container" style="background-color:azure;width: 97%;text-align: center;">
+  <h2 style="font-weight: bolder; font-size: xx-large; color: rgb(6, 102, 105);background-color: rgb(247, 236, 22);">List Of Articles</h2>
+
+    <div class="search-sort-container">
+      <div class="search-box">
+        <input 
+          type="text" style="width:97%;color: black;border-color: black;"
+          [(ngModel)]="searchQuery" 
+          (ngModelChange)="onSearch()"
+          placeholder="Search articles...">
+      </div>
+      <div class="sort-options">
+        <button 
+          [class.active]="sortBy === 'latest'"
+          (click)="changeSort('latest')">
+          Latest
+        </button>
+        <button 
+          [class.active]="sortBy === 'popular'"
+          (click)="changeSort('popular')">
+          Most Popular
+        </button>
+        <button 
+          [class.active]="sortBy === 'editorsPick'"
+          (click)="changeSort('editorsPick')">
+          Editor's Picks
+        </button>
+      </div>
+    </div>
+  <button class="create-post-button" routerLink="/create-post" style="float: right; height:32px ;background-color: rgb(69, 131, 238);
+          color: white">
+    Create New Post
+  </button>
+
+    <app-featured-articles *ngIf="currentPage === 1 && !searchQuery"></app-featured-articles>
+  
+    <div class="articles-grid">
+      <app-article-card 
+        *ngFor="let article of articles"
+        [article]="article"
+        [showAuthor]="true">
+      </app-article-card>
+    </div>
+  
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,54 @@
+<div class="editor-container">
+    <form [formGroup]="editorForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input 
+          type="text" 
+          id="title" 
+          formControlName="title" 
+          placeholder="Enter article title">
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea 
+          id="description" 
+          formControlName="description" 
+          placeholder="Brief description of your article"
+          rows="3"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label>Content</label>
+        <quill-editor 
+          formControlName="content"
+          [modules]="quillModules"
+          placeholder="Write your article content here..."></quill-editor>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tags">Tags (comma separated)</label>
+          <input 
+            type="text" 
+            id="tags" 
+            (change)="updateTags($event)"
+            placeholder="technology, business, etc.">
+        </div>
+  
+        <div class="form-group checkbox-group">
+          <label>
+            <input type="checkbox" formControlName="isFeatured"> Featured
+          </label>
+          <label>
+            <input type="checkbox" formControlName="isEditorsPick"> Editor's Pick
+          </label>
+        </div>
+      </div>
+  
+      <div class="form-actions">
+        <button type="button" class="secondary-button">Save Draft</button>
+        <button type="submit" class="primary-button">Publish Article</button>
+      </div>
+    </form>
+  </div>

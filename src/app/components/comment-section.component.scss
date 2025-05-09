@@ -1,0 +1,139 @@
+.comment-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .comment-sort {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  
+      span {
+        margin-right: 0.5rem;
+      }
+  
+      button {
+        padding: 0.3rem 0.8rem;
+        background: #f0f0f0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+  
+        &.active {
+          background: #4285f4;
+          color: white;
+        }
+      }
+    }
+  
+    .comment-form {
+      margin-bottom: 2rem;
+  
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        min-height: 100px;
+        margin-bottom: 1rem;
+        font-family: inherit;
+      }
+  
+      button {
+        padding: 0.7rem 1.5rem;
+        background: #4285f4;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+  
+        &:disabled {
+          background: #cccccc;
+          cursor: not-allowed;
+        }
+      }
+    }
+  
+    .login-prompt {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 4px;
+      text-align: center;
+  
+      a {
+        color: #4285f4;
+        text-decoration: none;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  
+    .comments-list {
+      .comment {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid #f0f0f0;
+  
+        &:last-child {
+          border-bottom: none;
+        }
+  
+        .comment-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+  
+          .comment-author-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+          }
+  
+          .comment-author-info {
+            display: flex;
+            flex-direction: column;
+  
+            .comment-author-name {
+              font-weight: 600;
+            }
+  
+            .comment-date {
+              font-size: 0.8rem;
+              color: #666;
+            }
+          }
+        }
+  
+        .comment-content {
+          margin-bottom: 1rem;
+          line-height: 1.6;
+        }
+  
+        .comment-actions {
+          button {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.9rem;
+  
+            &:hover {
+              color: #4285f4;
+            }
+          }
+        }
+      }
+    }
+  }

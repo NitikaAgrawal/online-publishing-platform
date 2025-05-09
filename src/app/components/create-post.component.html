@@ -1,0 +1,72 @@
+<div class="create-post-container" style="background-color: beige;margin-top: -40px;">
+    <h2 style="font-weight: bolder; font-size: xx-large; color: rgb(6, 102, 105);background-color: rgb(247, 236, 22);">Create New Post</h2>
+    
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title" style="font-weight: bold; font-size: large;color: hsl(0, 99%, 45%);">Post Title</label>
+        <input 
+          type="text" 
+          id="title" 
+          style="width: 97%;"
+          formControlName="title" 
+          placeholder="Enter post title"
+          [class.invalid]="postForm.get('title')?.invalid && postForm.get('title')?.touched">
+        <div class="validation-error" *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
+          Title is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="category" style="font-weight: bold; font-size: large;color: hsl(0, 99%, 45%);">Category</label>
+        <select id="category" formControlName="category">
+          <option value="">Select a category</option>
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+        <div class="validation-error" *ngIf="postForm.get('category')?.invalid && postForm.get('category')?.touched">
+          Category is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label style="font-weight: bold; font-size: large;color: hsl(0, 99%, 45%);">Description</label>
+        <quill-editor 
+          formControlName="description"
+          [modules]="quillModules"
+          placeholder="Write your post content here..." style="width: 100%; height: 50%;background-color: white;"></quill-editor>
+        <div class="validation-error" *ngIf="postForm.get('description')?.invalid && postForm.get('description')?.touched">
+          Description is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="image" style="font-weight: bold; font-size: large;color: hsl(0, 99%, 45%);">Image</label>
+        <input 
+          type="file" 
+          id="image" 
+          (change)="onFileChange($event)"
+          accept="image/*">
+        <div class="preview-image" *ngIf="imagePreview">
+          <img [src]="imagePreview" alt="Preview">
+        </div>
+      </div>
+  
+      <div class="form-actions">
+        <button type="button" class="secondary-button" (click)="previewPost()" style="background-color: brown;color: white;">Preview</button>
+        <button type="submit" class="primary-button" [disabled]="postForm.invalid">Publish</button>
+      </div>
+    </form>
+  
+    <div class="preview-modal" *ngIf="showPreview">
+      <div class="preview-content">
+        <button class="close-button" (click)="showPreview = false">&times;</button>
+        <h2>{{ postForm.value.title }}</h2>
+        <p><strong>Category:</strong> {{ postForm.value.category }}</p>
+        <div class="preview-description" [innerHTML]="postForm.value.description"></div>
+        <div class="preview-image" *ngIf="imagePreview">
+          <img [src]="imagePreview" alt="Preview">
+        </div>
+      </div>
+    </div>
+  </div>

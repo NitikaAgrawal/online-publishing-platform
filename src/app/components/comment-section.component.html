@@ -1,0 +1,52 @@
+<div class="comment-section" style="font-weight: bold;background-color: azure; ">
+    <h3>Comments ({{ comments.length }})</h3>
+    
+    <div class="comment-sort">
+      <span>Sort by:</span>
+      <button 
+        [class.active]="sortBy === 'newest'"
+        (click)="sortBy = 'newest'">
+        Newest
+      </button>
+      <button 
+        [class.active]="sortBy === 'oldest'"
+        (click)="sortBy = 'oldest'">
+        Oldest
+      </button>
+      <button 
+        [class.active]="sortBy === 'popular'"
+        (click)="sortBy = 'popular'">
+        Most Liked
+      </button>
+    </div>
+  
+    <div class="comment-form" *ngIf="currentUser" style="font-weight: bold;">
+      <textarea 
+        [(ngModel)]="newComment"  style="width: 94%;"
+        placeholder="Write your comment..."></textarea>
+      <button (click)="addComment()" [disabled]="!newComment.trim()" style="background-color: cadetblue; color: black;">Post Comment</button>
+    </div>
+    <div class="login-prompt" *ngIf="!currentUser">
+      <p>Please <a routerLink="/login">login</a> to post a comment.</p>
+    </div>
+  
+    <div class="comments-list">
+      <div *ngFor="let comment of comments" class="comment">
+        <div class="comment-header">
+          <img [src]="comment.author?.profilePicture || 'assets/comment.jpeg'" 
+               [alt]="comment.author?.name" 
+               class="comment-author-image">
+          <div class="comment-author-info">
+            <span class="comment-author-name">{{ comment.author?.name }}</span>
+            <span class="comment-date">{{ comment.createdAt | date }}</span>
+          </div>
+        </div>
+        <div class="comment-content">{{ comment.content }}</div>
+        <div class="comment-actions">
+          <button (click)="likeComment(comment.id)">
+            Like ({{ comment.likes }})
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
